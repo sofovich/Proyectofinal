@@ -1,0 +1,13 @@
+{% extends 'Users/profile.html' %}
+
+{% block messages %}
+
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form_avatar.as_p }}
+    <input type="submit" value="Save" class="w3-button w3-round-large w3-button w3-large w3-indigo w3-margin-bottom">
+</form>
+
+<a button type="button" class="w3-button w3-round-large w3-button w3-large w3-indigo w3-margin-top" href=" {% url 'users:editProfile' %} ">Return</button></a>
+
+{% endblock messages %}

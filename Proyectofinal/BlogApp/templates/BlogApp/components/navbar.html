@@ -1,0 +1,28 @@
+
+<div class="w3-bar w3-black w3-border w3-padding-large">
+
+    <a href="{% url 'blogapp:Home' %}" class="w3-bar-item w3-button"><i class= "fa fa-motorcycle"></i> Home</a>
+    <a href="{% url 'blogapp:Posts' %}" class="w3-bar-item w3-button"><i class="fa fa-list-ul"></i> Posts</a>
+
+
+  
+    {% if user.is_authenticated %}
+        <div class="w3-dropdown-hover w3-right">
+
+            <button class="w3-button w3-small">
+                <img class="w3-circle" width="20px" src="{{avatar}}"></img>
+                {{user.username}}
+            </button>
+
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="{% url 'users:Profile' user.id %}" class="w3-bar-item w3-button"><i class="fa fa-user-o"></i> Profile</a>
+                <a href="{% url 'blogapp:Messages' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope-o"></i> Inbox</a>
+                <a href="{% url 'users:Logout' %}" class="w3-bar-item w3-button"><i class="fa fa-window-close-o"></i> Log Out</a>
+            </div>
+        </div>
+    {% else %}
+        
+        <a button class="w3-bar-item w3-button w3-round-large w3-button w3-blue w3-right w3-margin-left" href="{% url 'users:Register' %}"><b>Register</b></a>
+        <a button class="w3-bar-item w3-button w3-round-large w3-button w3-blue w3-right" href="{% url 'users:Login' %}"><b>Log In</b></a>
+    {% endif %}
+</div>

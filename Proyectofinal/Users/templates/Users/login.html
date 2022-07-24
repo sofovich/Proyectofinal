@@ -1,0 +1,19 @@
+{% extends 'BlogApp/template.html' %}
+
+{% block content %}
+   
+
+<h3>Welcome back! Log in to your account:</h3>
+<form action="{% url 'users:Login' %}" method="POST">{% csrf_token %}
+    <table class="w3-table w3-topbar w3-bottombar w3-border-dark-grey w3-round">
+        {{ form.as_table }}
+    </table>
+        
+        
+    <div class="w3-bar w3-padding-32">
+        <input button type="submit" class="w3-button w3-round-large w3-button w3-large w3-indigo" value="Log In">
+        <a button type="button" class="w3-button w3-round-large w3-button w3-large w3-indigo" href=" {% url 'blogapp:Home' %} ">Return to Home</button></a>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'BlogApp/posts.html' %}
+
+{% block posts %}
+
+<div class="w3-panel w3-padding-16 w3-center w3-topbar w3-bottombar w3-border-dark-grey w3-round">
+    <h1>New Post</h1>
+</div>
+
+
+
+<form enctype="multipart/form-data" action="{% url 'blogapp:PostForm' %}" method="POST">{% csrf_token %}
+
+    <table class="w3-table w3-topbar w3-bottombar w3-border-dark-grey w3-round">
+    {{ myForm.media }}
+    {{ myForm.as_table|safe }}
+    </table>
+    
+   
+    <div class="w3-bar w3-padding-32">
+        <input button type="submit" class="w3-button w3-round-large w3-button w3-large w3-indigo" value="Submit">
+        <a button type="button" class="w3-button w3-round-large w3-button w3-large w3-indigo" href=" {% url 'blogapp:Posts' %} ">Return</button></a>
+    </div>
+</form>
+
+{% endblock posts %}

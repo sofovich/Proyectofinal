@@ -1,0 +1,61 @@
+{% extends 'BlogApp/template.html' %}
+
+{% block content %}
+{% block posts %}
+
+
+<div class="w3-panel w3-padding-16 w3-center w3-topbar w3-bottombar w3-border-dark-grey w3-round">
+    <h1>Posts</h1>
+    <h3 class="w3-opacity" style="text-shadow:1px 1px 0 #444">View the complete list of Posts:</h3>
+</div>
+
+
+
+{% if posts %}
+    
+  
+    
+    <div class="w3-container">
+        <table class="w3-table-all w3-hoverable">
+            <thead>
+                <tr class="w3-dark-grey w3-wide">
+                    <th>Title</th>
+                    <th>Subtitle</th>
+                    <th>Author</th>
+                    <th>Publication date</th>
+                    <th>Content</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <th>{{post.title}}</th>
+                        <td>{{post.subtitle}}</td>
+                        <td>{{post.author}}</td>
+                        <td>{{post.date}}</td>
+                        <td>{{post.content|slice:':70'|safe}} <a class="w3-text-blue" href="{% url 'blogapp:PostDetail' post.id %}">... [Read More]</a></td>
+                        <td> 
+                            {% if request.user == post.author %}
+                            
+                            <a href="{% url 'blogapp:PostDelete' post.id %}" class="w3-button w3-round w3-indigo w3-small"><i class="fa fa-trash"></i> Delete Post</a>
+                            <a href="{% url 'blogapp:EditPost' post.id %}" class="w3-button w3-round w3-indigo w3-small"><i class="fa fa-edit"></i> Edit Post</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+
+
+{% endif %}
+
+
+<div class="w3-bar w3-padding-32">
+    <a button class="w3-button w3-round-large w3-button w3-large w3-indigo" href="{% url 'blogapp:PostForm' %}"><i class="fa fa-edit"></i> Create New Post</a>
+    
+</div>
+
+{% endblock posts %}
+{% endblock %}
